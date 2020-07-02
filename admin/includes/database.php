@@ -1,4 +1,5 @@
 <?php
+//ini_set("memory_limit","16M");
 //require_once("config.php");
 class Database{
     public $connection;
@@ -28,7 +29,9 @@ class Database{
     }
 
     public function escape_string($string){
+        
         $escape_string = $this->connection->real_escape_string($string);
+        //ini_set("memory_limit","1024M");
         return $escape_string;
     }
     public function the_insert_id(){
