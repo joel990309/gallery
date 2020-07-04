@@ -16,7 +16,8 @@
             $user->last_name = $_POST['last_name'];
             $user->password = $_POST['password'];
 
-            $user->save_user_and_image();
+            $user->upload_image();
+            $user->save();
         }
      }
     

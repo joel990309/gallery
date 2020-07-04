@@ -5,15 +5,16 @@
 
 <?php
 $message = "";
+$photo = new Photo();
 if(isset($_POST['submit'])){
-    $photos = new Photo();
-    $photos->title = $_POST['title'];
-    $photos->set_file($_FILES['file_upload']);
+    
+    $photo->title = $_POST['title'];
+    $photo->set_file($_FILES['file_upload']);
 
-    if($photos->save()){
+    if($photo->save_and_upload_photo()){
     $message = "Photo Uploaded Successfully";
     } else {
-        $message = join("<br>", $photos->errors);
+        $message = join("<br>", $photo->errors);
     }
 
 }
@@ -22,7 +23,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
-
+ 
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,7 +35,7 @@ if(isset($_POST['submit'])){
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="../index.php">Visit Home Page</a>
             </div>
             <!-- Top Menu Items -->
                 <?php include("includes/top_nav.php"); ?>

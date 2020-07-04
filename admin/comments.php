@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="../index.php">Visit Home Page</a>
             </div>
             <!-- Top Menu Items -->
                 <?php include("includes/top_nav.php"); ?>
@@ -35,7 +35,7 @@
                         <h1 class="page-header">
                              comments
                         </h1>
-                        <a href="add_comment.php" class="btn btn-primary">Add comment</a>
+                        <!-- <a href="add_comment.php" class="btn btn-primary">Add comment</a> -->
                         <div class="col-md-12">
                             <table class="table table-hover">
                                 <thead>

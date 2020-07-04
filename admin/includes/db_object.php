@@ -1,7 +1,7 @@
 <?php
 //we will put our commonly used methods here and extend them in other class
 class Db_object {
-
+    //protected $filename_in_set_file = "filename";
     public $errors = array();
     public $upload_errors_array = array(
 
@@ -16,25 +16,25 @@ class Db_object {
         
         );
 
-    public function set_file($file) {
+    // public function set_file($file) {
 
-            if(empty($file) || !$file || !is_array($file)){
-                //This check and make sure that file is not empty
-                $this->error[] = "There was no file uploaded here";
-                return false;
-            } elseif($file['error'] != 0){
-                //This will check if there is an error and display the errors array
-                $this->custom_errors[] = $this->upload_errors_array[$file['error']];
-                return false;
-            } else {
-                $this->user_image = basename($file['name']);
-                $this->tmp_path = $file['tmp_name'];
-                $this->type = $file['type'];
-                $this->size = $file['size'];
+    //         if(empty($file) || !$file || !is_array($file)){
+    //             //This check and make sure that file is not empty
+    //             $this->error[] = "There was no file uploaded here";
+    //             return false;
+    //         } elseif($file['error'] != 0){
+    //             //This will check if there is an error and display the errors array
+    //             $this->custom_errors[] = $this->upload_errors_array[$file['error']];
+    //             return false;
+    //         } else {
+    //             $this->filename_in_set_file = basename($file['name']);
+    //             $this->tmp_path = $file['tmp_name'];
+    //             $this->type = $file['type'];
+    //             $this->size = $file['size'];
     
-            }
+    //         }
     
-    }    
+    // }    
     
     public static function find_all(){
         //global $database;
