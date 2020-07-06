@@ -2,3 +2,10 @@
   width: 200px;
   height: 150px !important;
 }
+
+/***Home Pagination***/
+.pager .active a,
+.pager .active a:hover {
+  background-color: black !important;
+  color: white;
+}
