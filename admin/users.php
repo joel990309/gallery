@@ -32,6 +32,7 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
+                    <h3 class="bg-success text-center"><?php echo $message; ?></h3>
                         <h1 class="page-header">
                              Users
                         </h1>

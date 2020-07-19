@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include("includes/photo_library_modal.php"); ?>
 <?php
 //this will check if user is not signed in 
  if(!$session->is_signed_in()){ redirect_link("login.php"); }
@@ -21,12 +22,16 @@
             //This will help display a pic in edit even if you dont upload a new image
             if(empty($_FILES['user_image'])){
                 $user->save();
+                redirect_link("users.php");
+                $session->message("User {$user->username} Updated Successful");
             } else {
                 $user->set_file($_FILES['user_image']);
                 $user->upload_image();
                 $user->save();
                 //To avoid the redirect warning 
-                redirect_link("edit_user.php?id={$user->id}");
+                //redirect_link("edit_user.php?id={$user->id}");
+                redirect_link("users.php");
+                $session->message("User <b>{$user->username}</b> Updated Successful");
             }
             
         }
@@ -35,6 +40,8 @@
 
  
  ?>
+
+ 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -67,8 +74,9 @@
                             <small>Subheading</small>
                         </h1>
 
-                    <div class="col-md-6">
-                        <img class="img-responsive" src="<?php echo $user->image_directory_user(); ?>" alt="">
+                    <div class="col-md-6 user_image_update">
+                    
+                        <a  href="" data-toggle="modal"  data-target="#photo-library"><img class="img-responsive" src="<?php echo $user->image_directory_user(); ?>" alt=""> </a>
                     </div>
 
                     <form action="" method="post" enctype="multipart/form-data">
@@ -93,7 +101,7 @@
                                 <input type="password" name="password" class="form-control" value="<?php echo $user->password; ?>">
                             </div>
                             <div class="info-box-delete pull-left">
-                                    <a  href="delete_user.php?id=<?php echo $user->id; ?>" class="btn btn-danger">Delete</a>   
+                                    <a id="user_id"  href="delete_user.php?id=<?php echo $user->id; ?>" class="btn btn-danger">Delete</a>   
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Update" name="update" class="btn btn-primary pull-right">

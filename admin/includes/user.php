@@ -9,7 +9,7 @@
         public $first_name;
         public $last_name;
         public $user_image;
-        public $upload_directory = "images/users";
+        public $upload_directory = "images";
         public $image_placeholder = "http://placehold.it/62x62&text=image";
 
         public function set_file($file) {
@@ -88,6 +88,25 @@
             }else {
                 return false;
             }
+        }
+
+        public function ajax_save_user_image($image_name, $user_id) {
+            global $database;
+
+            $user_image = $database->escape_string($image_name); 
+            $user_id = $database->escape_string($user_id);
+
+            $this->user_image = $image_name;
+            $this->id = $user_id;
+
+
+            $sql = "UPDATE " .self::$db_table. " SET user_image ='{$this->user_image}' ";
+            $sql .= "WHERE id = {$this->id}";
+            $update_image = $database->query($sql);
+
+            echo $this->image_directory_user();
+            
+            
         }
 
     }   

@@ -13,7 +13,7 @@ class Photo extends Db_object {
     public $size;
     //public $filename_in_set_file = "filename";
     public $tmp_path;
-    public $upload_directory = "images/photos";
+    public $upload_directory = "images";
     
     
     public function set_file($file) {
@@ -80,6 +80,17 @@ class Photo extends Db_object {
         }else {
             return false;
         }
+    }
+
+    public static function display_sidebar_data($photo_id){
+        $photo = photo::find_by_id($photo_id);
+
+        $output = "<a class='thumbnail' href='#'><img width='100px' src='{$photo->picture_path()}'></a> ";
+        $output .= "<p>{$photo->filename}</p> ";
+        $output .= "<p>{$photo->type}</p> ";
+        $output .= "<p>{$photo->size}</p>";
+
+        echo $output;
     }
 
 }

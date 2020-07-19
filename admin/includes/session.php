@@ -4,11 +4,30 @@
      private $signed_in = false;
      public $user_id;
      public $count;
+     public $message;
 
      function __construct() {
          session_start();
          $this->view_count();
          $this->check_the_login();
+         $this->check_message();
+     }
+     public function message($mgs = ""){
+         if(!empty($mgs)) {
+            $_SESSION["message"] = $mgs;
+         } else {
+             return $this->message;
+         }
+     }
+     private function check_message(){
+         if(isset($_SESSION["message"])){
+             //we check if message session is set 
+             $this->message = $_SESSION["message"];
+             unset($_SESSION["message"]);
+         } else {
+             //if message session is set then we assign to empty assign
+             $this->message = "";
+         }
      }
      public function is_signed_in(){
          return $this->signed_in;
@@ -41,24 +60,25 @@
             $this->signed_in = false; 
         }
      }
-     public function message($mgs = ""){
-        if(empty($mgs)){
-            $_SESSION['message'] = $mgs;
-        } else {
-            return $this->message;
-        }
-    }
+    //  public function message($mgs = ""){
+    //     if(empty($mgs)){
+    //         $_SESSION['message'] = $mgs;
+    //     } else {
+    //         return $this->message;
+    //     }
+    // }
 
-    public function check_message(){
-        if(isset($_SESSION['message'])){
-            $this->message = $_SESION['message'];
-            //the code below will remove or clear mesaage after reload
-            unset($_SESSION['messsage']);
-        } else{
-            $this->message = "";
-        }
-    }
+    // public function check_message(){
+    //     if(isset($_SESSION['message'])){
+    //         $this->message = $_SESION['message'];
+    //         //the code below will remove or clear mesaage after reload
+    //         unset($_SESSION['messsage']);
+    //     } else{
+    //         $this->message = "";
+    //     }
+    // }
  }
 $session = new Session();
+$message = $session->message();
 
 ?>
